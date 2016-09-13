@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Provides a currency rates processor for Feeds.
+ */
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function currency_rates_processor_import_ctools_plugin_api($owner, $api) {
+  if ($owner == 'feeds' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_feeds_plugins().
+ */
+function currency_rates_processor_import_feeds_plugins() {
+  $info = array();
+
+  $info['CurrencyRatesProcessor'] = array(
+    'name' => 'Currency rates processor',
+    'description' => 'Create and update currency rates.',
+    'help' => 'Create and update currency rates from parsed content.',
+    'handler' => array(
+      'parent' => 'FeedsProcessor',
+      'class' => 'CurrencyRatesProcessor',
+      'file' => 'CurrencyRatesProcessor.inc',
+      'path' => drupal_get_path('module', 'currency_rates_processor') . '/includes',
+    ),
+  );
+  return $info;
+}

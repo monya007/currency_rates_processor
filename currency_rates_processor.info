@@ -1,0 +1,7 @@
+name = Currency rates processor
+description = Create and update currency rates from parsed content.
+core = 7.x
+package = Feeds
+
+dependencies[] = feeds
+dependencies[] = commerce_multicurrency
